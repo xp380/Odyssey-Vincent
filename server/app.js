@@ -5,6 +5,7 @@ const  express  =  require('express');
 const  bodyParser  =  require('body-parser');
 const  morgan  =  require('morgan');
 const  app  =  express();
+const authRouter = require('./routes/auth/auth');
 
 // je configure l'application
 app.use(morgan('dev'));
@@ -12,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended:  false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname  +  '/public'));
 
+//où authRouter est issu de l'importation
+app.use('/auth', authRouter); 
 // j'implémente la partie API
 app.get("/", (req,res) => {
     res.send("youhou");
